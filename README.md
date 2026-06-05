@@ -122,3 +122,30 @@ npm install
 npm run dev
 ```
 *The web dashboard runs on [http://localhost:3000](http://localhost:3000).*
+
+---
+
+## 📸 Screenshots
+
+Here are the visual layouts and interface features of the executive intelligence dashboard:
+
+### 1. Initial Load (Full Viewport Center Layout)
+All 21 nodes across 6 stages are immediately visible, balanced, and readable.
+![01_initial_load.png](screenshots/01_initial_load.png)
+
+### 2. Graph Controls (Collapsible Filters Panel)
+The left panel transitions smoothly and houses multi-select filters, chokepoint filters, and reset controls.
+![02_graph_controls.png](screenshots/02_graph_controls.png)
+
+### 3. Interactive Hover Pathways
+Hovering over a company (e.g. ASML) highlights its direct upstream and downstream dependencies and dims other parts.
+![03_hover_highlights.png](screenshots/03_hover_highlights.png)
+
+### 4. Right Tabbed Executive Analytics
+Tabbed navigation enables looking at high-level metrics, the Bottlenecks registry, or Country Concentration (HHI score).
+![04_tabbed_sidebar.png](screenshots/04_tabbed_sidebar.png)
+
+### 5. Dynamic Filter Recalculation
+Filtering for a specific subset (e.g. Critical Risk or Taiwan only) updates all graph coordinates and centers the visible nodes dynamically.
+![05_filtered_view.png](screenshots/05_filtered_view.png)
+
