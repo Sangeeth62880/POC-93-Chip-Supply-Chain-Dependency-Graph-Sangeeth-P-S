@@ -68,7 +68,7 @@ To fulfill executive dashboard standards, the application bypasses random force-
    $$\text{Design} \rightarrow \text{Fabrication} \rightarrow \text{Equipment} \rightarrow \text{Memory} \rightarrow \text{Packaging} \rightarrow \text{Consumer}$$
 2. **Horizontal Alignment**: Columns are spaced precisely at `x = stageIndex * 270 + 50` pixels, which centers each $220\text{px}$ node card perfectly within its corresponding $270\text{px}$ background swimlane.
 3. **Vertical Centering & Bounded Heights**: Within each column, nodes are sorted and spaced vertically:
-   $$y_i = \text{startY} + i \times (\text{NODE\_HEIGHT} + \text{gap})$$
+   $$y_i = \text{startY} + i \times (\text{NodeHeight} + \text{gap})$$
    Where $\text{startY}$ centers the active set inside a bounded height of $620\text{px}$. This guarantees **zero vertical overflow** and ensures all nodes fit comfortably on the screen upon loading.
 
 ---
@@ -141,11 +141,7 @@ The left panel transitions smoothly and houses multi-select filters, chokepoint 
 Hovering over a company (e.g. ASML) highlights its direct upstream and downstream dependencies and dims other parts.
 ![03_hover_highlights.png](screenshots/03_hover_highlights.png)
 
-### 4. Right Tabbed Executive Analytics
-Tabbed navigation enables looking at high-level metrics, the Bottlenecks registry, or Country Concentration (HHI score).
-![04_tabbed_sidebar.png](screenshots/04_tabbed_sidebar.png)
-
-### 5. Dynamic Filter Recalculation
-Filtering for a specific subset (e.g. Critical Risk or Taiwan only) updates all graph coordinates and centers the visible nodes dynamically.
-![05_filtered_view.png](screenshots/05_filtered_view.png)
+### 4. Dynamic Filter Recalculation
+Filtering for a specific subset (e.g. Critical Risk or Taiwan only) updates all graph coordinates, dynamically centers the visible nodes, and updates metrics.
+![04_filtered_view.png](screenshots/04_filtered_view.png)
 
