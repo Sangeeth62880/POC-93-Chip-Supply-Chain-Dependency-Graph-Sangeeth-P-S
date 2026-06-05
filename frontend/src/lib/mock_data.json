@@ -1,0 +1,576 @@
+{
+    "nodes": [
+        {
+            "id": "arm",
+            "label": "ARM Holdings",
+            "country": "United Kingdom",
+            "country_flag": "\ud83c\uddec\ud83c\udde7",
+            "stage": "design",
+            "color": "#818CF8",
+            "market_share": 95.0,
+            "revenue_usd": 3233000000.0,
+            "no_alternatives": true,
+            "is_bottleneck": true,
+            "bottleneck_reason": "No viable alternatives exist. Controls 95.0% market share. Critical risk level.",
+            "description": "CPU/GPU architecture licensing. ARM designs power 95% of mobile processors and an increasing share of data-center and automotive chips. No viable alternative architecture exists at comparable power efficiency.",
+            "risk_if_fails": "Global smartphone production halts. Apple, Qualcomm, Samsung, and MediaTek lose access to the instruction set architecture powering virtually all mobile devices.",
+            "risk_level": "critical"
+        },
+        {
+            "id": "cadence",
+            "label": "Cadence Design Systems",
+            "country": "United States",
+            "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+            "stage": "design",
+            "color": "#818CF8",
+            "market_share": 32.0,
+            "revenue_usd": 4090000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Electronic Design Automation (EDA) software. Together with Synopsys, forms a duopoly in chip design tools. Every advanced chip designed in the last decade used Cadence or Synopsys tools.",
+            "risk_if_fails": "Chip designers lose access to verification and simulation tools. New chip designs delayed by 12-18 months as teams migrate toolchains.",
+            "risk_level": "high"
+        },
+        {
+            "id": "synopsys",
+            "label": "Synopsys",
+            "country": "United States",
+            "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+            "stage": "design",
+            "color": "#818CF8",
+            "market_share": 35.0,
+            "revenue_usd": 5840000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Electronic Design Automation (EDA) software. Market leader in logic synthesis and physical verification. Part of the EDA duopoly with Cadence.",
+            "risk_if_fails": "Similar to Cadence \u2014 chip design pipeline freezes. Combined with Cadence disruption, the entire semiconductor design ecosystem collapses.",
+            "risk_level": "high"
+        },
+        {
+            "id": "tsmc",
+            "label": "TSMC",
+            "country": "Taiwan",
+            "country_flag": "\ud83c\uddf9\ud83c\uddfc",
+            "stage": "fabrication",
+            "color": "#38BDF8",
+            "market_share": 92.0,
+            "revenue_usd": 87100000000.0,
+            "no_alternatives": true,
+            "is_bottleneck": true,
+            "bottleneck_reason": "No viable alternatives exist. Controls 92.0% market share. Critical risk level.",
+            "description": "Advanced node fabrication. TSMC controls 92% of advanced semiconductor fabrication below 7nm. Zero substitutes exist below 5nm. Sole manufacturer of chips for Apple, Nvidia, AMD, and Qualcomm's flagship products.",
+            "risk_if_fails": "Catastrophic. Apple loses A-series and M-series production. Nvidia H100/H200 production stops. AMD Ryzen and EPYC unavailable. Global AI compute capacity drops 80%+.",
+            "risk_level": "critical"
+        },
+        {
+            "id": "samsung_foundry",
+            "label": "Samsung Foundry",
+            "country": "South Korea",
+            "country_flag": "\ud83c\uddf0\ud83c\uddf7",
+            "stage": "fabrication",
+            "color": "#38BDF8",
+            "market_share": 5.0,
+            "revenue_usd": 15200000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Secondary advanced node fabrication. Produces chips at 3nm and 5nm but with lower yields than TSMC. Primary foundry partner for Qualcomm's mid-range chips.",
+            "risk_if_fails": "Qualcomm loses secondary fab capacity. Some Google Tensor chips delayed. Limited global impact compared to TSMC disruption.",
+            "risk_level": "medium"
+        },
+        {
+            "id": "intel_foundry",
+            "label": "Intel Foundry",
+            "country": "United States",
+            "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+            "stage": "fabrication",
+            "color": "#38BDF8",
+            "market_share": 2.0,
+            "revenue_usd": 18900000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Limited advanced node capacity. Intel Foundry Services (IFS) is attempting to compete with TSMC but remains 1-2 process generations behind. Critical for US semiconductor sovereignty.",
+            "risk_if_fails": "US loses domestic advanced fab capability. CHIPS Act investments at risk. National security implications for defense chip supply.",
+            "risk_level": "medium"
+        },
+        {
+            "id": "asml",
+            "label": "ASML",
+            "country": "Netherlands",
+            "country_flag": "\ud83c\uddf3\ud83c\uddf1",
+            "stage": "equipment",
+            "color": "#F59E0B",
+            "market_share": 100.0,
+            "revenue_usd": 29300000000.0,
+            "no_alternatives": true,
+            "is_bottleneck": true,
+            "bottleneck_reason": "No viable alternatives exist. Controls 100.0% market share. Critical risk level.",
+            "description": "EUV lithography \u2014 MONOPOLY. ASML is the only company on Earth that manufactures Extreme Ultraviolet lithography machines. Without EUV, no chips below 7nm can be printed. Each machine costs $380M+ and takes 18 months to build.",
+            "risk_if_fails": "Global semiconductor advancement stops. No new chips below 7nm can be manufactured. TSMC, Samsung, and Intel all depend on ASML for next-generation production.",
+            "risk_level": "critical"
+        },
+        {
+            "id": "applied_materials",
+            "label": "Applied Materials",
+            "country": "United States",
+            "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+            "stage": "equipment",
+            "color": "#F59E0B",
+            "market_share": 24.0,
+            "revenue_usd": 26500000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Deposition and etch equipment. Largest semiconductor equipment maker by revenue. Provides critical CVD and PVD systems used in nearly every fab worldwide.",
+            "risk_if_fails": "Fab capacity expansion slows significantly. Existing fabs can maintain production but cannot upgrade or expand.",
+            "risk_level": "high"
+        },
+        {
+            "id": "lam_research",
+            "label": "Lam Research",
+            "country": "United States",
+            "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+            "stage": "equipment",
+            "color": "#F59E0B",
+            "market_share": 20.0,
+            "revenue_usd": 17400000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Etch and deposition equipment. Dominant in plasma etch systems critical for patterning advanced chips. Along with Applied Materials, forms a US-controlled equipment duopoly.",
+            "risk_if_fails": "Advanced chip patterning degrades. Fabs cannot maintain precision required for sub-5nm nodes without Lam's etch tools.",
+            "risk_level": "high"
+        },
+        {
+            "id": "sk_hynix",
+            "label": "SK Hynix",
+            "country": "South Korea",
+            "country_flag": "\ud83c\uddf0\ud83c\uddf7",
+            "stage": "memory",
+            "color": "#10B981",
+            "market_share": 53.0,
+            "revenue_usd": 35800000000.0,
+            "no_alternatives": true,
+            "is_bottleneck": true,
+            "bottleneck_reason": "No viable alternatives exist. Critical risk level.",
+            "description": "HBM (High Bandwidth Memory) for AI chips. SK Hynix controls 53% of global HBM production and is the sole supplier of HBM3E to Nvidia for H100/H200 GPUs. HBM is the critical bottleneck for AI compute scaling.",
+            "risk_if_fails": "Nvidia H100/H200 production halts. Global AI training capacity drops dramatically. No alternative HBM supplier can fill the gap within 12 months.",
+            "risk_level": "critical"
+        },
+        {
+            "id": "micron",
+            "label": "Micron",
+            "country": "United States",
+            "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+            "stage": "memory",
+            "color": "#10B981",
+            "market_share": 25.0,
+            "revenue_usd": 25100000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "DRAM and NAND flash memory. Third-largest memory maker globally. Provides memory for servers, PCs, and mobile devices. Expanding into HBM to compete with SK Hynix.",
+            "risk_if_fails": "DRAM supply tightens, driving up prices for servers and consumer devices. HBM diversification efforts set back.",
+            "risk_level": "medium"
+        },
+        {
+            "id": "samsung_memory",
+            "label": "Samsung Memory",
+            "country": "South Korea",
+            "country_flag": "\ud83c\uddf0\ud83c\uddf7",
+            "stage": "memory",
+            "color": "#10B981",
+            "market_share": 40.0,
+            "revenue_usd": 50200000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "DRAM and NAND flash memory. Largest memory manufacturer by revenue. Produces HBM but trails SK Hynix in HBM3E yields and Nvidia qualification.",
+            "risk_if_fails": "Global DRAM prices spike 50-100%. Smartphone and server memory supply severely constrained. Partial impact on HBM supply.",
+            "risk_level": "high"
+        },
+        {
+            "id": "ase_group",
+            "label": "ASE Group",
+            "country": "Taiwan",
+            "country_flag": "\ud83c\uddf9\ud83c\uddfc",
+            "stage": "packaging",
+            "color": "#6B7280",
+            "market_share": 28.0,
+            "revenue_usd": 20100000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Advanced packaging (OSAT). World's largest outsourced semiconductor assembly and test company. Provides CoWoS-like advanced packaging critical for AI chips combining logic dies with HBM.",
+            "risk_if_fails": "Advanced AI chip packaging capacity drops significantly. Nvidia and Apple face 6-12 month delays on next-generation products.",
+            "risk_level": "high"
+        },
+        {
+            "id": "amkor",
+            "label": "Amkor",
+            "country": "United States",
+            "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+            "stage": "packaging",
+            "color": "#6B7280",
+            "market_share": 15.0,
+            "revenue_usd": 7300000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Semiconductor packaging and test. Second-largest OSAT provider. Key packaging partner for Apple and Qualcomm with facilities in South Korea and Vietnam.",
+            "risk_if_fails": "Apple and Qualcomm lose secondary packaging capacity. Production shifts to ASE Group, creating bottleneck.",
+            "risk_level": "medium"
+        },
+        {
+            "id": "jcet",
+            "label": "JCET",
+            "country": "China",
+            "country_flag": "\ud83c\udde8\ud83c\uddf3",
+            "stage": "packaging",
+            "color": "#6B7280",
+            "market_share": 10.0,
+            "revenue_usd": 5100000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Semiconductor packaging. Third-largest OSAT globally. Primarily serves Chinese domestic chip companies but also packages for international clients.",
+            "risk_if_fails": "Chinese domestic chip production slows. Limited global impact as alternatives exist in Taiwan and South Korea.",
+            "risk_level": "medium"
+        },
+        {
+            "id": "apple",
+            "label": "Apple",
+            "country": "United States",
+            "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+            "stage": "consumer",
+            "color": "#EF4444",
+            "market_share": null,
+            "revenue_usd": 383000000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Designs A-series and M-series chips. Entirely dependent on TSMC for fabrication and ASE Group / Amkor for packaging.",
+            "risk_if_fails": "iPhone, iPad, and Mac production stops. World's most valuable company loses its hardware revenue stream.",
+            "risk_level": "high"
+        },
+        {
+            "id": "nvidia",
+            "label": "Nvidia",
+            "country": "United States",
+            "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+            "stage": "consumer",
+            "color": "#EF4444",
+            "market_share": null,
+            "revenue_usd": 60900000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Designs H100, H200, and Blackwell AI GPUs. Entirely dependent on TSMC for fabrication and SK Hynix for HBM memory.",
+            "risk_if_fails": "Global AI compute expansion halts. Cloud providers (AWS, Azure, GCP) cannot deploy new GPU capacity. AI training timelines extend by years.",
+            "risk_level": "high"
+        },
+        {
+            "id": "amd",
+            "label": "AMD",
+            "country": "United States",
+            "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+            "stage": "consumer",
+            "color": "#EF4444",
+            "market_share": null,
+            "revenue_usd": 22700000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Designs Ryzen CPUs and EPYC server processors, plus Instinct AI accelerators. Dependent on TSMC for all advanced fabrication.",
+            "risk_if_fails": "Server CPU market loses primary Intel competitor. Data center diversification efforts stall.",
+            "risk_level": "medium"
+        },
+        {
+            "id": "qualcomm",
+            "label": "Qualcomm",
+            "country": "United States",
+            "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+            "stage": "consumer",
+            "color": "#EF4444",
+            "market_share": null,
+            "revenue_usd": 35800000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Designs Snapdragon mobile SoCs and 5G modems. Splits fabrication between TSMC and Samsung Foundry.",
+            "risk_if_fails": "Android smartphone ecosystem loses primary chip supplier. 5G modem supply disrupted globally.",
+            "risk_level": "medium"
+        },
+        {
+            "id": "intel_consumer",
+            "label": "Intel (Chips Division)",
+            "country": "United States",
+            "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+            "stage": "consumer",
+            "color": "#EF4444",
+            "market_share": null,
+            "revenue_usd": 54200000000.0,
+            "no_alternatives": false,
+            "is_bottleneck": false,
+            "bottleneck_reason": null,
+            "description": "Designs and manufactures x86 CPUs. Unique in being both designer and fabricator, though increasingly outsourcing to TSMC for advanced nodes.",
+            "risk_if_fails": "PC and server markets lose dominant CPU supplier. x86 architecture ecosystem disrupted.",
+            "risk_level": "medium"
+        }
+    ],
+    "edges": [
+        {
+            "id": "arm-tsmc",
+            "source": "arm",
+            "target": "tsmc",
+            "dependency_type": "primary",
+            "risk_level": "critical",
+            "annual_value_usd": 12500000000.0,
+            "label": "ARM designs fabbed at TSMC"
+        },
+        {
+            "id": "arm-samsung_foundry",
+            "source": "arm",
+            "target": "samsung_foundry",
+            "dependency_type": "secondary",
+            "risk_level": "medium",
+            "annual_value_usd": 2100000000.0,
+            "label": "ARM designs fabbed at Samsung"
+        },
+        {
+            "id": "cadence-tsmc",
+            "source": "cadence",
+            "target": "tsmc",
+            "dependency_type": "primary",
+            "risk_level": "high",
+            "annual_value_usd": 1800000000.0,
+            "label": "Cadence EDA tools for TSMC PDKs"
+        },
+        {
+            "id": "synopsys-tsmc",
+            "source": "synopsys",
+            "target": "tsmc",
+            "dependency_type": "primary",
+            "risk_level": "high",
+            "annual_value_usd": 2200000000.0,
+            "label": "Synopsys EDA tools for TSMC PDKs"
+        },
+        {
+            "id": "asml-tsmc",
+            "source": "asml",
+            "target": "tsmc",
+            "dependency_type": "sole_supplier",
+            "risk_level": "critical",
+            "annual_value_usd": 9800000000.0,
+            "label": "EUV lithography machines to TSMC"
+        },
+        {
+            "id": "asml-samsung_foundry",
+            "source": "asml",
+            "target": "samsung_foundry",
+            "dependency_type": "sole_supplier",
+            "risk_level": "critical",
+            "annual_value_usd": 3200000000.0,
+            "label": "EUV lithography machines to Samsung"
+        },
+        {
+            "id": "tsmc-apple",
+            "source": "tsmc",
+            "target": "apple",
+            "dependency_type": "sole_supplier",
+            "risk_level": "critical",
+            "annual_value_usd": 25000000000.0,
+            "label": "Sole supplier for A-series & M-series"
+        },
+        {
+            "id": "tsmc-nvidia",
+            "source": "tsmc",
+            "target": "nvidia",
+            "dependency_type": "sole_supplier",
+            "risk_level": "critical",
+            "annual_value_usd": 18000000000.0,
+            "label": "Sole supplier for H100/H200 GPUs"
+        },
+        {
+            "id": "tsmc-amd",
+            "source": "tsmc",
+            "target": "amd",
+            "dependency_type": "sole_supplier",
+            "risk_level": "critical",
+            "annual_value_usd": 8500000000.0,
+            "label": "Sole supplier for Ryzen & EPYC"
+        },
+        {
+            "id": "samsung_foundry-qualcomm",
+            "source": "samsung_foundry",
+            "target": "qualcomm",
+            "dependency_type": "primary",
+            "risk_level": "high",
+            "annual_value_usd": 6000000000.0,
+            "label": "Primary fab for Snapdragon chips"
+        },
+        {
+            "id": "sk_hynix-nvidia",
+            "source": "sk_hynix",
+            "target": "nvidia",
+            "dependency_type": "sole_supplier",
+            "risk_level": "critical",
+            "annual_value_usd": 7500000000.0,
+            "label": "HBM3E memory for H100/H200"
+        },
+        {
+            "id": "ase_group-apple",
+            "source": "ase_group",
+            "target": "apple",
+            "dependency_type": "primary",
+            "risk_level": "high",
+            "annual_value_usd": 4200000000.0,
+            "label": "Advanced packaging for A-series"
+        },
+        {
+            "id": "ase_group-nvidia",
+            "source": "ase_group",
+            "target": "nvidia",
+            "dependency_type": "primary",
+            "risk_level": "high",
+            "annual_value_usd": 3800000000.0,
+            "label": "CoWoS packaging for H100/H200"
+        }
+    ],
+    "sidebar_content": {
+        "title": "Chip Supply Chain Dependency Graph",
+        "subtitle": "Supply Chain Rail \u00b7 Semiconductor Layer",
+        "why_this_matters": "The global semiconductor supply chain is the most concentrated critical infrastructure on Earth. A single company in the Netherlands \u2014 ASML \u2014 makes the only machines capable of printing advanced chips. A single fab in Taiwan \u2014 TSMC \u2014 produces chips for Apple, Nvidia, AMD, and nearly every advanced device. This is not a market. It is a rail. And almost no one controls a redundant track.",
+        "who_controls_the_rail": "Three chokepoints \u2014 ASML's EUV monopoly, TSMC's fabrication dominance, and ARM's architecture licensing \u2014 mean that export controls, natural disasters, or geopolitical conflict in any one of three locations can halt global chip production.",
+        "top_controllers": [
+            {
+                "name": "ASML",
+                "role": "EUV Lithography Monopoly"
+            },
+            {
+                "name": "TSMC",
+                "role": "Advanced Node Fabrication"
+            },
+            {
+                "name": "ARM",
+                "role": "CPU/GPU Architecture Licensing"
+            },
+            {
+                "name": "SK Hynix",
+                "role": "HBM Memory for AI Chips"
+            },
+            {
+                "name": "ASE Group",
+                "role": "Advanced Packaging"
+            }
+        ]
+    },
+    "metrics": {
+        "total_nodes": 20,
+        "critical_bottlenecks": 4,
+        "countries_at_risk": 4,
+        "sole_supplier_nodes": 3
+    },
+    "bottlenecks": [
+        {
+            "id": "arm",
+            "label": "ARM Holdings",
+            "country": "United Kingdom",
+            "country_flag": "\ud83c\uddec\ud83c\udde7",
+            "stage": "design",
+            "risk_level": "critical",
+            "bottleneck_reason": "No viable alternatives exist. Controls 95.0% market share. Critical risk level.",
+            "risk_if_fails": "Global smartphone production halts. Apple, Qualcomm, Samsung, and MediaTek lose access to the instruction set architecture powering virtually all mobile devices."
+        },
+        {
+            "id": "tsmc",
+            "label": "TSMC",
+            "country": "Taiwan",
+            "country_flag": "\ud83c\uddf9\ud83c\uddfc",
+            "stage": "fabrication",
+            "risk_level": "critical",
+            "bottleneck_reason": "No viable alternatives exist. Controls 92.0% market share. Critical risk level.",
+            "risk_if_fails": "Catastrophic. Apple loses A-series and M-series production. Nvidia H100/H200 production stops. AMD Ryzen and EPYC unavailable. Global AI compute capacity drops 80%+."
+        },
+        {
+            "id": "asml",
+            "label": "ASML",
+            "country": "Netherlands",
+            "country_flag": "\ud83c\uddf3\ud83c\uddf1",
+            "stage": "equipment",
+            "risk_level": "critical",
+            "bottleneck_reason": "No viable alternatives exist. Controls 100.0% market share. Critical risk level.",
+            "risk_if_fails": "Global semiconductor advancement stops. No new chips below 7nm can be manufactured. TSMC, Samsung, and Intel all depend on ASML for next-generation production."
+        },
+        {
+            "id": "sk_hynix",
+            "label": "SK Hynix",
+            "country": "South Korea",
+            "country_flag": "\ud83c\uddf0\ud83c\uddf7",
+            "stage": "memory",
+            "risk_level": "critical",
+            "bottleneck_reason": "No viable alternatives exist. Critical risk level.",
+            "risk_if_fails": "Nvidia H100/H200 production halts. Global AI training capacity drops dramatically. No alternative HBM supplier can fill the gap within 12 months."
+        }
+    ],
+    "analytics": {
+        "concentration_score": 0.0,
+        "by_country": [
+            {
+                "country": "United Kingdom",
+                "country_flag": "\ud83c\uddec\ud83c\udde7",
+                "critical_node_count": 1,
+                "critical_node_percentage": 25.0,
+                "node_names": [
+                    "ARM Holdings"
+                ]
+            },
+            {
+                "country": "Taiwan",
+                "country_flag": "\ud83c\uddf9\ud83c\uddfc",
+                "critical_node_count": 1,
+                "critical_node_percentage": 25.0,
+                "node_names": [
+                    "TSMC"
+                ]
+            },
+            {
+                "country": "South Korea",
+                "country_flag": "\ud83c\uddf0\ud83c\uddf7",
+                "critical_node_count": 1,
+                "critical_node_percentage": 25.0,
+                "node_names": [
+                    "SK Hynix"
+                ]
+            },
+            {
+                "country": "Netherlands",
+                "country_flag": "\ud83c\uddf3\ud83c\uddf1",
+                "critical_node_count": 1,
+                "critical_node_percentage": 25.0,
+                "node_names": [
+                    "ASML"
+                ]
+            },
+            {
+                "country": "United States",
+                "country_flag": "\ud83c\uddfa\ud83c\uddf8",
+                "critical_node_count": 0,
+                "critical_node_percentage": 0.0,
+                "node_names": []
+            },
+            {
+                "country": "China",
+                "country_flag": "\ud83c\udde8\ud83c\uddf3",
+                "critical_node_count": 0,
+                "critical_node_percentage": 0.0,
+                "node_names": []
+            }
+        ]
+    },
+    "data_source": "synthetic",
+    "timestamp": "2026-06-04T09:47:08.071599+00:00"
+}
