@@ -17,8 +17,7 @@ const STAGE_ORDER: Record<string, number> = {
 
 export function getLayoutedElements(
   nodes: Node[],
-  edges: Edge[],
-  direction: "LR" | "TB" = "LR"
+  edges: Edge[]
 ): { nodes: Node[]; edges: Edge[] } {
   const containerHeight = 620; // Vertically bounds the graph viewport
   const verticalGap = 16;      // Space between cards
@@ -54,7 +53,7 @@ export function getLayoutedElements(
         targetPosition: Position.Left,
         sourcePosition: Position.Right,
         position: {
-          x: stageIndex * COLUMN_WIDTH + 50, // Centers the 220px node in the 270px column lane (with 25px offset)
+          x: stageIndex * COLUMN_WIDTH + 25 + (COLUMN_WIDTH - NODE_WIDTH) / 2, // Centers the 220px node in the 270px column lane (with 25px offset)
           y: startY + index * (NODE_HEIGHT + verticalGap),
         },
       };

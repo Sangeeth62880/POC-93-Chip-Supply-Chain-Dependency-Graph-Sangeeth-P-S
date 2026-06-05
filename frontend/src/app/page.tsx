@@ -309,7 +309,7 @@ function DashboardContent() {
   const handleExportData = () => {
     if (!filteredGraphData) return;
 
-    const escapeCSV = (val: any) => {
+    const escapeCSV = (val: string | number | boolean | null | undefined) => {
       if (val === null || val === undefined) return '""';
       const str = String(val).replace(/"/g, '""');
       return `"${str}"`;

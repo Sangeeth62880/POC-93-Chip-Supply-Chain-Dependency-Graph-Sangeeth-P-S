@@ -3,7 +3,7 @@
 /* ─── Bottlenecks Tab (List of Bottleneck Cards with Analytics) ──────── */
 
 import type { BottleneckEntry, EdgeData } from "@/lib/types";
-import { Zap, GitCommit } from "lucide-react";
+import { GitCommit } from "lucide-react";
 
 interface BottlenecksTabProps {
   bottlenecks: BottleneckEntry[];

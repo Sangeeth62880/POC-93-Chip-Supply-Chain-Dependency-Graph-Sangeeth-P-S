@@ -106,7 +106,7 @@ export default function DependencyGraph({
   onNodeClick,
   selectedNodeId,
 }: DependencyGraphProps) {
-  const [isLayouted, setIsLayouted] = useState(false);
+  const [isLayouted] = useState(true);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const { fitView } = useReactFlow();
 
@@ -152,7 +152,7 @@ export default function DependencyGraph({
 
   // Apply stage column layout
   const { nodes: layoutedNodes, edges: layoutedEdges } = useMemo(
-    () => getLayoutedElements(initialNodes, initialEdges, "LR"),
+    () => getLayoutedElements(initialNodes, initialEdges),
     [initialNodes, initialEdges]
   );
 
@@ -163,7 +163,6 @@ export default function DependencyGraph({
   useEffect(() => {
     setNodes(layoutedNodes);
     setEdges(layoutedEdges);
-    setIsLayouted(true);
     
     // Auto-fit to viewport on initial load
     setTimeout(() => {

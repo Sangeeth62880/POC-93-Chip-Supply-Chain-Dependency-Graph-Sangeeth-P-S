@@ -30,7 +30,10 @@ export default function IntelligenceSidebar({
   // Automatically switch to the "Details" tab when a node is selected
   useEffect(() => {
     if (selectedNodeId) {
-      setActiveTab("details");
+      const timer = setTimeout(() => {
+        setActiveTab("details");
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [selectedNodeId]);
 

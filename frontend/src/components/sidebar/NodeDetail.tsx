@@ -19,15 +19,20 @@ export default function NodeDetail({ nodeId, onNodeClick, onClearSelection }: No
 
   useEffect(() => {
     if (!nodeId) {
-      setDetail(null);
-      return;
+      const timer = setTimeout(() => {
+        setDetail(null);
+      }, 0);
+      return () => clearTimeout(timer);
     }
 
-    setLoading(true);
-    fetchNodeDetail(nodeId).then(({ data }) => {
-      setDetail(data);
-      setLoading(false);
-    });
+    const timer = setTimeout(() => {
+      setLoading(true);
+      fetchNodeDetail(nodeId).then(({ data }) => {
+        setDetail(data);
+        setLoading(false);
+      });
+    }, 0);
+    return () => clearTimeout(timer);
   }, [nodeId]);
 
   if (!nodeId) {
