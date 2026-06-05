@@ -308,15 +308,79 @@ function DashboardContent() {
 
   const handleExportData = () => {
     if (!filteredGraphData) return;
-    const jsonString = `data:text/json;charset=utf-8,${encodeURIComponent(
-      JSON.stringify(filteredGraphData, null, 2)
-    )}`;
+
+    const escapeCSV = (val: any) => {
+      if (val === null || val === undefined) return '""';
+      const str = String(val).replace(/"/g, '""');
+      return `"${str}"`;
+    };
+
+    // 1. Companies Section (Nodes)
+    const nodeHeaders = [
+      "ID",
+      "Company Name",
+      "Stage",
+      "Country",
+      "Market Share (%)",
+      "Risk Level",
+      "Is Bottleneck",
+      "Bottleneck Reason",
+      "Description",
+      "Failure Impact"
+    ];
+
+    const nodeRows = filteredGraphData.nodes.map((n) => [
+      n.id,
+      n.label,
+      n.stage,
+      n.country,
+      n.market_share !== null ? n.market_share : "",
+      n.risk_level,
+      n.is_bottleneck ? "Yes" : "No",
+      n.bottleneck_reason || "",
+      n.description || "",
+      n.risk_if_fails || ""
+    ]);
+
+    // 2. Dependencies Section (Edges)
+    const edgeHeaders = [
+      "Source ID",
+      "Target ID",
+      "Dependency Type",
+      "Risk Level",
+      "Annual Value (USD)",
+      "Label"
+    ];
+
+    const edgeRows = filteredGraphData.edges.map((e) => [
+      e.source,
+      e.target,
+      e.dependency_type,
+      e.risk_level,
+      e.annual_value_usd,
+      e.label || ""
+    ]);
+
+    const csvLines = [
+      "COMPANIES",
+      nodeHeaders.join(","),
+      ...nodeRows.map((row) => row.map(escapeCSV).join(",")),
+      "",
+      "DEPENDENCIES",
+      edgeHeaders.join(","),
+      ...edgeRows.map((row) => row.map(escapeCSV).join(","))
+    ];
+
+    const csvContent = csvLines.join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
     const downloadAnchor = document.createElement("a");
-    downloadAnchor.setAttribute("href", jsonString);
-    downloadAnchor.setAttribute("download", `chip_supply_chain_intel_${new Date().toISOString().slice(0, 10)}.json`);
+    downloadAnchor.setAttribute("href", url);
+    downloadAnchor.setAttribute("download", `chip_supply_chain_intel_${new Date().toISOString().slice(0, 10)}.csv`);
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
+    URL.revokeObjectURL(url);
   };
 
   if (loading || !graphData || !filteredGraphData) {
