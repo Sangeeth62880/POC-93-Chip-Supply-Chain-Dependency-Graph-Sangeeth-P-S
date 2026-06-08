@@ -3,8 +3,15 @@
 Computes bottleneck scores, country concentration, and supply chain risk metrics.
 """
 
+import json
 import networkx as nx
-from mock_data import NODES, EDGES, SIDEBAR_CONTENT
+from mock_data import SIDEBAR_CONTENT
+
+with open("data/mock_data.json") as f:
+    mock_data_content = json.load(f)
+
+NODES = mock_data_content["nodes"]
+EDGES = mock_data_content["edges"]
 
 
 def build_graph() -> nx.DiGraph:

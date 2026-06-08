@@ -21,6 +21,7 @@ import { StageNode } from "./StageNode";
 import { CustomEdge } from "./CustomEdge";
 import { getLayoutedElements } from "./layout";
 import type { NodeData, EdgeData, Stage, RiskLevel } from "@/lib/types";
+import { graphAdapter } from "@/data/adapters/graphAdapter";
 
 interface DependencyGraphProps {
   graphNodes: NodeData[];
@@ -110,44 +111,10 @@ export default function DependencyGraph({
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const { fitView } = useReactFlow();
 
-  // Convert API data to React Flow nodes
-  const initialNodes: Node[] = useMemo(
-    () =>
-      graphNodes.map((n) => ({
-        id: n.id,
-        type: "stageNode",
-        position: { x: 0, y: 0 },
-        data: {
-          label: n.label,
-          country: n.country,
-          country_flag: n.country_flag,
-          stage: n.stage,
-          color: n.color,
-          market_share: n.market_share,
-          is_bottleneck: n.is_bottleneck,
-          risk_level: n.risk_level,
-          description: n.description,
-        },
-      })),
-    [graphNodes]
-  );
-
-  // Convert API data to React Flow edges
-  const initialEdges: Edge[] = useMemo(
-    () =>
-      graphEdges.map((e) => ({
-        id: e.id,
-        source: e.source,
-        target: e.target,
-        type: "custom",
-        data: {
-          dependency_type: e.dependency_type,
-          risk_level: e.risk_level,
-          annual_value_usd: e.annual_value_usd,
-          label: e.label || "",
-        },
-      })),
-    [graphEdges]
+  // Convert API data to React Flow elements via the adapter
+  const { nodes: initialNodes, edges: initialEdges } = useMemo(
+    () => graphAdapter(graphNodes, graphEdges),
+    [graphNodes, graphEdges]
   );
 
   // Apply stage column layout
