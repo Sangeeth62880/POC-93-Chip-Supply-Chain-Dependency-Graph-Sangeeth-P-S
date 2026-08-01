@@ -10,72 +10,9 @@ import { fetchGraphData } from "@/lib/api";
 import Filters from "@/components/sidebar/Filters";
 import DependencyGraph from "@/components/graph/DependencyGraph";
 import IntelligenceSidebar from "@/components/sidebar/IntelligenceSidebar";
-import { Filter } from "lucide-react";
+import Header from "@/components/Header";
 
-/* ─── Sleek Custom Search Dropdown Component ────────────── */
-interface SearchNodeDropdownProps {
-  nodes: { id: string; label: string }[];
-  onSelectNode: (id: string) => void;
-  search: string;
-  setSearch: (val: string) => void;
-}
 
-function SearchNodeDropdown({
-  nodes,
-  onSelectNode,
-  search,
-  setSearch,
-}: SearchNodeDropdownProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const filteredNodes = nodes.filter((n) =>
-    n.label.toLowerCase().includes(search.toLowerCase())
-  );
-
-  // Close dropdown on click outside
-  useEffect(() => {
-    const handleOutsideClick = () => setIsOpen(false);
-    document.addEventListener("click", handleOutsideClick);
-    return () => document.removeEventListener("click", handleOutsideClick);
-  }, []);
-
-  return (
-    <div className="relative" onClick={(e) => e.stopPropagation()}>
-      <input
-        type="text"
-        placeholder="Search company..."
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-          setIsOpen(true);
-        }}
-        onFocus={() => setIsOpen(true)}
-        className="bg-[#111827] border border-[#1F2937] text-xs text-[#E5E7EB] rounded-lg px-3 py-1.5 w-[190px] focus:outline-none focus:border-[#38BDF8] transition-colors font-medium placeholder-[#4B5563]"
-      />
-      {isOpen && search && (
-        <div className="absolute right-0 mt-1.5 w-[230px] max-h-[220px] overflow-y-auto bg-[#0B1117]/95 border border-[#1F2937] rounded-xl shadow-2xl z-50 p-1 backdrop-blur-md">
-          {filteredNodes.length > 0 ? (
-            filteredNodes.map((node) => (
-              <button
-                key={node.id}
-                onClick={() => {
-                  onSelectNode(node.id);
-                  setSearch("");
-                  setIsOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs text-[#9CA3AF] hover:text-white hover:bg-[#38BDF8]/10 transition-all cursor-pointer font-medium"
-              >
-                {node.label}
-              </button>
-            ))
-          ) : (
-            <div className="text-[10px] text-[#4B5563] p-3 text-center uppercase tracking-wider font-semibold">No results found</div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
 
 /* ─── Dashboard content layout that consumes ReactFlow context ─── */
 function DashboardContent() {
@@ -98,6 +35,7 @@ function DashboardContent() {
 
   // Selected Node State
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   // React Flow hooks for viewport control
   const { fitView, getViewport, setViewport } = useReactFlow();
@@ -273,6 +211,7 @@ function DashboardContent() {
 
   const handleNodeClick = useCallback((nodeId: string) => {
     setSelectedNodeId(nodeId);
+    setIsPanelOpen(true);
     
     // Zoom onto the target node smoothly
     setTimeout(() => {
@@ -385,12 +324,12 @@ function DashboardContent() {
 
   if (loading || !graphData || !filteredGraphData) {
     return (
-      <div className="h-screen w-screen flex items-center justify-center bg-[#030712]">
+      <div className="h-screen w-screen flex items-center justify-center bg-[#080C10]">
         <div className="text-center">
-          <div className="text-xs uppercase tracking-[0.22em] text-[#38BDF8] font-bold mb-2 animate-pulse">
-            Real Rails
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[#5BB8F5] font-bold mb-2 animate-pulse">
+            Infocreon Internship
           </div>
-          <div className="text-sm text-[#6B7280] tracking-wider uppercase font-medium">
+          <div className="text-sm text-[#4A6070] tracking-wider uppercase font-medium">
             Loading Supply Chain Intelligence...
           </div>
         </div>
@@ -399,113 +338,104 @@ function DashboardContent() {
   }
 
   return (
-    <div className="h-screen w-screen flex flex-col overflow-hidden bg-[#030712] font-sans antialiased text-[#E5E7EB]">
-      {/* ─── Top Bar (Full Width, 70px) ─── */}
-      <header className="h-[70px] w-full border-b border-[#1F2937] bg-[#0B1117]/85 backdrop-blur-md px-6 flex items-center justify-between z-45 shrink-0">
-        <div>
-          <h1 className="text-base font-extrabold text-[#F3F4F6] tracking-tight flex items-center gap-2">
-            <span>Chip Supply Chain Dependency Graph</span>
-            <span className="text-[9px] tracking-[0.12em] px-2 py-0.5 bg-[#38BDF8]/10 text-[#38BDF8] border border-[#38BDF8]/20 rounded font-black uppercase">
-              Executive Intel
-            </span>
-          </h1>
-          <p className="text-[10px] uppercase tracking-[0.18em] text-[#6B7280] mt-0.5 font-bold">
-            Supply Chain Rail • Semiconductor Layer
-          </p>
-        </div>
+    <main
+      className="h-screen w-screen relative overflow-hidden flex font-sans antialiased text-[#F5F5F5] transition-colors duration-200"
+      style={{ background: "#111111" }}
+    >
+      <Header onGraphControlsClick={() => setShowFilters((prev) => !prev)} />
 
-        <div className="flex items-center gap-3">
-          {/* Search Dropdown - displays full set for easy discovery */}
-          <SearchNodeDropdown
-            nodes={graphData.nodes.map((n) => ({ id: n.id, label: n.label }))}
-            onSelectNode={handleNodeClick}
-            search={searchQuery}
-            setSearch={setSearchQuery}
-          />
-
-          {/* Toggle Filters Button */}
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className={`flex items-center justify-center gap-1.5 px-3 py-1.5 border text-xs rounded-lg transition-all duration-200 cursor-pointer font-semibold ${
-              showFilters
-                ? "bg-[#38BDF8]/10 border-[#38BDF8]/30 text-[#38BDF8]"
-                : "border-[#1F2937] text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#111827]"
-            }`}
-          >
-            <Filter size={12} />
-            <span>{showFilters ? "Hide Controls" : "Graph Controls"}</span>
-          </button>
-
-          {/* Reset View Button */}
-          <button
-            onClick={handleResetView}
-            className="flex items-center justify-center gap-1.5 px-3 py-1.5 border border-[#1F2937] text-xs text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#111827] rounded-lg transition-all duration-200 cursor-pointer font-semibold"
-          >
-            Reset View
-          </button>
-
-          {/* Export Data Button */}
-          <button
-            onClick={handleExportData}
-            className="flex items-center justify-center gap-1.5 px-3 py-1.5 bg-[#38BDF8]/10 text-xs text-[#38BDF8] border border-[#38BDF8]/25 hover:bg-[#38BDF8]/25 rounded-lg font-bold transition-all duration-200 cursor-pointer"
-          >
-            Export Data
-          </button>
-        </div>
-      </header>
-
-      {/* ─── Main Content 3-Panels Layout ─── */}
-      <div className="flex-1 flex overflow-hidden w-full relative">
-        {/* Left Panel (Filters) — Collapsible with smooth transition */}
+      {showFilters && (
         <div
-          className={`h-full shrink-0 border-r border-[#1F2937] transition-all duration-300 ease-in-out ${
-            showFilters ? "w-[240px]" : "w-0 overflow-hidden border-none"
-          }`}
+          style={{
+            position: "fixed",
+            top: "60px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 9998,
+            background: "#1A1A1A",
+            border: "1px solid #2A2A2A",
+            borderRadius: "8px",
+            padding: "16px",
+            width: "280px",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+          }}
         >
-          <div className="w-[240px] h-full">
-            <Filters
-              activeStages={activeStages}
-              activeRiskLevels={activeRiskLevels}
-              activeCountries={activeCountries}
-              bottlenecksOnly={bottlenecksOnly}
-              soleSuppliersOnly={soleSuppliersOnly}
-              onStagesChange={setActiveStages}
-              onRiskLevelsChange={setActiveRiskLevels}
-              onCountriesChange={setActiveCountries}
-              onBottlenecksOnlyChange={setBottlenecksOnly}
-              onSoleSuppliersOnlyChange={setSoleSuppliersOnly}
-              onResetFilters={handleResetFilters}
-            />
-          </div>
-        </div>
-
-        {/* Center Panel (Graph Workspace) — Resizes dynamically to exact 70% of screen when filters are closed */}
-        <div className="flex-1 h-full shrink-0 relative transition-all duration-300 ease-in-out">
-          <DependencyGraph
-            graphNodes={filteredGraphData.nodes}
-            graphEdges={filteredGraphData.edges}
-            isMock={isMock}
+          <Filters
             activeStages={activeStages}
             activeRiskLevels={activeRiskLevels}
             activeCountries={activeCountries}
+            onStagesChange={setActiveStages}
+            onRiskLevelsChange={setActiveRiskLevels}
+            onCountriesChange={setActiveCountries}
             bottlenecksOnly={bottlenecksOnly}
             soleSuppliersOnly={soleSuppliersOnly}
-            onNodeClick={handleNodeClick}
-            selectedNodeId={selectedNodeId}
+            onBottlenecksOnlyChange={setBottlenecksOnly}
+            onSoleSuppliersOnlyChange={setSoleSuppliersOnly}
+            onResetFilters={handleResetFilters}
           />
         </div>
+      )}
 
-        {/* Right Panel (Intelligence Sidebar) — Set to exact 30% of screen to maintain the 70/30 split */}
-        <div className="w-[30%] min-w-[340px] h-full shrink-0 transition-all duration-300 ease-in-out">
-          <IntelligenceSidebar
-            graphData={filteredGraphData}
-            selectedNodeId={selectedNodeId}
-            onNodeClick={handleNodeClick}
-            onNodeDetailClose={handleNodeDetailClose}
-          />
-        </div>
+      {/* Center Panel (Graph Workspace) — Fills 100% of the viewport workspace */}
+      <div className="flex-1 h-full relative">
+        <DependencyGraph
+          graphNodes={filteredGraphData.nodes}
+          graphEdges={filteredGraphData.edges}
+          isMock={isMock}
+          activeStages={activeStages}
+          activeRiskLevels={activeRiskLevels}
+          activeCountries={activeCountries}
+          bottlenecksOnly={bottlenecksOnly}
+          soleSuppliersOnly={soleSuppliersOnly}
+          onNodeClick={handleNodeClick}
+          selectedNodeId={selectedNodeId}
+        />
       </div>
-    </div>
+
+      {/* Right Panel (Intelligence Sidebar) — slide-over fixed overlay */}
+      <IntelligenceSidebar
+        graphData={filteredGraphData}
+        selectedNodeId={selectedNodeId}
+        onNodeClick={handleNodeClick}
+        onNodeDetailClose={handleNodeDetailClose}
+        isOpen={isPanelOpen}
+        onClose={() => setIsPanelOpen(false)}
+      />
+
+      {/* Panel trigger button (bottom right) */}
+      {!isPanelOpen && (
+        <button
+          onClick={() => setIsPanelOpen(true)}
+          className="intelligence-panel-btn"
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            zIndex: 30,
+            background: "#161616",
+            border: "1px solid #2A2A2A",
+            borderRadius: "6px",
+            color: "#888888",
+            fontSize: "10px",
+            padding: "10px 16px",
+            cursor: "pointer",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            transition: "border-color 0.2s ease, color 0.2s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = "#FF6B35";
+            e.currentTarget.style.color = "#FF6B35";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "#2A2A2A";
+            e.currentTarget.style.color = "#888888";
+          }}
+        >
+          Intelligence Panel &rarr;
+        </button>
+      )}
+    </main>
   );
 }
 

@@ -14,9 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chip Supply Chain Dependency Graph — Real Rails PoC #93",
-  description:
-    "Interactive semiconductor supply chain intelligence dashboard. Visualize critical dependencies, bottlenecks, and concentration risks across the global chip manufacturing rail.",
+  title: "Infocreon Internship — Chip Supply Chain Dependency Graph · PoC #93",
+  description: "Semiconductor supply chain critical chokepoints and concentration analytics",
 };
 
 export default function RootLayout({
@@ -29,7 +28,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#030712]">
+      <body className="min-h-full flex flex-col bg-[#111111]">
         <TooltipProvider delay={200}>
           {children}
         </TooltipProvider>

@@ -20,12 +20,12 @@ const COUNTRY_SHORT: Record<string, string> = {
 };
 
 const BAR_COLORS = [
-  "#38BDF8",
-  "#818CF8",
-  "#F59E0B",
-  "#10B981",
-  "#EF4444",
-  "#6B7280",
+  "#FF6B35",
+  "#F5F5F5",
+  "#888888",
+  "#FF3B3B",
+  "#555555",
+  "#333333",
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,18 +33,18 @@ function CustomTooltip({ active, payload }: any) {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
-      <div className="glass-card rounded-lg px-3 py-2 text-xs shadow-xl">
-        <div className="font-semibold text-[#E5E7EB] mb-1">
+      <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded px-3 py-2 text-xs shadow-xl">
+        <div className="font-semibold text-[#F5F5F5] mb-1">
           {data.country} {data.country_flag}
         </div>
-        <div className="text-[#9CA3AF]">
-          Critical Nodes: <span className="text-[#E5E7EB] font-mono">{data.critical_node_count}</span>
+        <div className="text-[#666666]">
+          Critical Nodes: <span className="text-[#F5F5F5] font-mono">{data.critical_node_count}</span>
         </div>
-        <div className="text-[#9CA3AF]">
-          Share: <span className="text-[#E5E7EB] font-mono">{data.critical_node_percentage}%</span>
+        <div className="text-[#666666]">
+          Share: <span className="text-[#F5F5F5] font-mono">{data.critical_node_percentage}%</span>
         </div>
         {data.node_names.length > 0 && (
-          <div className="text-[#6B7280] mt-1 text-[10px]">
+          <div className="text-[#666666] mt-1 text-[10px]">
             {data.node_names.join(", ")}
           </div>
         )}
@@ -67,18 +67,18 @@ export default function CountryConcentration({
   return (
     <div className="px-4 py-3.5">
       <div className="flex items-center gap-2 mb-2.5">
-        <Globe size={14} className="text-[#818CF8]" strokeWidth={2.5} />
-        <h2 className="text-xs uppercase tracking-[0.15em] text-[#9CA3AF] font-bold">
+        <Globe size={14} className="text-[#FF6B35]" strokeWidth={2.5} />
+        <h2 className="text-xs uppercase tracking-[0.15em] text-[#666666] font-bold">
           Country Concentration
         </h2>
         <span
           className="ml-auto text-xs font-semibold font-mono px-1.5 py-0.5 rounded"
           style={{
-            color: analytics.concentration_score > 50 ? "#EF4444" : "#F59E0B",
+            color: analytics.concentration_score > 50 ? "#FF3B3B" : "#FF6B35",
             background:
               analytics.concentration_score > 50
-                ? "rgba(239, 68, 68, 0.1)"
-                : "rgba(245, 158, 11, 0.1)",
+                ? "rgba(255, 59, 59, 0.08)"
+                : "rgba(255, 107, 53, 0.08)",
           }}
         >
           Risk: {analytics.concentration_score.toFixed(0)}/100
@@ -95,7 +95,7 @@ export default function CountryConcentration({
             <XAxis
               type="number"
               domain={[0, 100]}
-              tick={{ fontSize: 10, fill: "#6B7280" }}
+              tick={{ fontSize: 10, fill: "#666666" }}
               tickLine={false}
               axisLine={false}
               tickFormatter={(v: number) => `${v}%`}
@@ -103,14 +103,14 @@ export default function CountryConcentration({
             <YAxis
               type="category"
               dataKey="shortName"
-              tick={{ fontSize: 11, fill: "#D1D5DB", fontWeight: "bold" }}
+              tick={{ fontSize: 11, fill: "#F5F5F5", fontWeight: "bold" }}
               tickLine={false}
               axisLine={false}
               width={65}
             />
             <Tooltip
               content={<CustomTooltip />}
-              cursor={{ fill: "rgba(31, 41, 55, 0.3)" }}
+              cursor={{ fill: "rgba(42, 42, 42, 0.4)" }}
             />
             <Bar
               dataKey="critical_node_percentage"

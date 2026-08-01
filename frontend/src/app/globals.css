@@ -48,51 +48,51 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 
   /* Real Rails DNA Colors */
-  --color-obsidian: #030712;
-  --color-navy: #0B1117;
-  --color-cyan-accent: #38BDF8;
-  --color-indigo-accent: #818CF8;
-  --color-slate-border: #1F2937;
-  --color-amber-accent: #F59E0B;
-  --color-green-accent: #10B981;
-  --color-grey-accent: #6B7280;
-  --color-red-accent: #EF4444;
+  --color-obsidian: #111111;
+  --color-navy: #1A1A1A;
+  --color-cyan-accent: #FF6B35;
+  --color-indigo-accent: #FF6B35;
+  --color-slate-border: #2A2A2A;
+  --color-amber-accent: #FF6B35;
+  --color-green-accent: #FF6B35;
+  --color-grey-accent: #3D5265;
+  --color-red-accent: #FF3B3B;
 }
 
 /* ─── Real Rails DNA: Dark Theme Only ─────────────────────── */
 :root {
-  --background: #030712;
-  --foreground: #E5E7EB;
-  --card: #0B1117;
-  --card-foreground: #E5E7EB;
-  --popover: #0B1117;
-  --popover-foreground: #E5E7EB;
-  --primary: #38BDF8;
-  --primary-foreground: #030712;
-  --secondary: #818CF8;
-  --secondary-foreground: #030712;
-  --muted: #111827;
-  --muted-foreground: #9CA3AF;
-  --accent: #1F2937;
-  --accent-foreground: #E5E7EB;
-  --destructive: #EF4444;
-  --border: #1F2937;
-  --input: #1F2937;
-  --ring: #38BDF8;
-  --chart-1: #38BDF8;
-  --chart-2: #818CF8;
-  --chart-3: #F59E0B;
-  --chart-4: #10B981;
-  --chart-5: #EF4444;
-  --radius: 0.5rem;
-  --sidebar: #0B1117;
-  --sidebar-foreground: #E5E7EB;
-  --sidebar-primary: #38BDF8;
-  --sidebar-primary-foreground: #030712;
-  --sidebar-accent: #1F2937;
-  --sidebar-accent-foreground: #E5E7EB;
-  --sidebar-border: #1F2937;
-  --sidebar-ring: #38BDF8;
+  --background: #111111;
+  --foreground: #F5F5F5;
+  --card: #1A1A1A;
+  --card-foreground: #F5F5F5;
+  --popover: #1A1A1A;
+  --popover-foreground: #F5F5F5;
+  --primary: #FF6B35;
+  --primary-foreground: #111111;
+  --secondary: #2A2A2A;
+  --secondary-foreground: #F5F5F5;
+  --muted: #1A1A1A;
+  --muted-foreground: #666666;
+  --accent: #2A2A2A;
+  --accent-foreground: #F5F5F5;
+  --destructive: #FF3B3B;
+  --border: #2A2A2A;
+  --input: #2A2A2A;
+  --ring: #FF6B35;
+  --chart-1: #FF6B35;
+  --chart-2: #F5F5F5;
+  --chart-3: #888888;
+  --chart-4: #FF3B3B;
+  --chart-5: #555555;
+  --radius: 0.25rem;
+  --sidebar: #1A1A1A;
+  --sidebar-foreground: #F5F5F5;
+  --sidebar-primary: #FF6B35;
+  --sidebar-primary-foreground: #111111;
+  --sidebar-accent: #2A2A2A;
+  --sidebar-accent-foreground: #F5F5F5;
+  --sidebar-border: #2A2A2A;
+  --sidebar-ring: #FF6B35;
 }
 
 /* No separate .dark class needed — always dark */
@@ -114,94 +114,87 @@
 
 /* Glassmorphism card */
 .glass-card {
-  background: rgba(11, 17, 23, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid #1F2937;
+  background: #1A1A1A;
+  border: 1px solid #2A2A2A;
 }
 
-/* Cyan glow on active/focus — 0.5px as per DNA */
+/* No glow effects in industrial theme */
 .cyan-glow {
-  box-shadow: 0 0 0 0.5px #38BDF8, 0 0 8px rgba(56, 189, 248, 0.15);
+  /* intentionally empty */
 }
 
-/* Bottleneck red pulse animation */
-@keyframes bottleneck-pulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4),
-                0 0 0 0 rgba(239, 68, 68, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.3),
-                0 0 12px 4px rgba(239, 68, 68, 0.15);
-  }
-}
-
+/* Bottleneck — static border only, no animation */
 .bottleneck-ring {
-  animation: bottleneck-pulse 2s ease-in-out infinite;
-  border: 2px solid #EF4444;
+  border: 2px solid #FF3B3B;
 }
 
 /* Stage color borders */
-.stage-design { border-left: 3px solid #818CF8; }
-.stage-fabrication { border-left: 3px solid #38BDF8; }
-.stage-equipment { border-left: 3px solid #F59E0B; }
-.stage-memory { border-left: 3px solid #10B981; }
-.stage-packaging { border-left: 3px solid #6B7280; }
-.stage-consumer { border-left: 3px solid #EF4444; }
+.stage-design { border-left: 3px solid #A0A0A0; }
+.stage-fabrication { border-left: 3px solid #C8C8C8; }
+.stage-equipment { border-left: 3px solid #FF6B35; }
+.stage-memory { border-left: 3px solid #A0A0A0; }
+.stage-packaging { border-left: 3px solid #555555; }
+.stage-consumer { border-left: 3px solid #555555; }
 
-/* Risk level badges */
-.risk-critical { background: rgba(239, 68, 68, 0.15); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.3); }
-.risk-high { background: rgba(245, 158, 11, 0.15); color: #F59E0B; border: 1px solid rgba(245, 158, 11, 0.3); }
-.risk-medium { background: rgba(107, 114, 128, 0.15); color: #9CA3AF; border: 1px solid rgba(107, 114, 128, 0.3); }
+/* Risk level badges — plain text only */
+.risk-critical { background: none; color: #FF3B3B; border: none; }
+.risk-high { background: none; color: #FF6B35; border: none; }
+.risk-medium { background: none; color: #555555; border: none; }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #111111;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1F2937;
+  background: #2A2A2A;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
+  background: #3A3A3A;
 }
 
 /* React Flow overrides */
 .react-flow__background {
-  background-color: #030712 !important;
+  background-color: transparent !important;
 }
 .react-flow__controls {
-  background: #0B1117 !important;
-  border: 1px solid #1F2937 !important;
-  border-radius: 8px !important;
+  background: #161616 !important;
+  border: 1px solid #2A2A2A !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
   overflow: hidden;
 }
 .react-flow__controls-button {
-  background: #0B1117 !important;
-  border-bottom: 1px solid #1F2937 !important;
-  fill: #9CA3AF !important;
+  background: #161616 !important;
+  border-bottom: 1px solid #2A2A2A !important;
+  fill: #555555 !important;
+  width: 24px !important;
+  height: 24px !important;
 }
 .react-flow__controls-button:hover {
-  background: #1F2937 !important;
-  fill: #38BDF8 !important;
+  background: #222222 !important;
+  fill: #FF6B35 !important;
+}
+.react-flow__controls-button:last-child {
+  border-bottom: none !important;
 }
 .react-flow__minimap {
-  background: #0B1117 !important;
-  border: 1px solid #1F2937 !important;
-  border-radius: 8px !important;
+  background: #1A1A1A !important;
+  border: 1px solid #2A2A2A !important;
+  border-radius: 4px !important;
 }
 
 /* Synthetic data badge */
 .synthetic-badge {
-  background: rgba(245, 158, 11, 0.15);
-  border: 1px solid rgba(245, 158, 11, 0.4);
-  color: #F59E0B;
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
+  background: #161616;
+  border: 1px solid #2A2A2A;
+  border-radius: 4px;
+  color: #444444;
+  font-size: 9px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -227,20 +220,9 @@
   animation: edge-flow 2s linear infinite !important;
 }
 
-/* Bottleneck Pulse Glow */
-@keyframes bottleneck-glow {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4), 0 0 2px rgba(239, 68, 68, 0.15);
-    border-color: rgba(239, 68, 68, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 35px rgba(239, 68, 68, 0.85), 0 0 8px rgba(239, 68, 68, 0.4);
-    border-color: rgba(239, 68, 68, 1);
-  }
-}
-
+/* Bottleneck — handled by red dot indicator in StageNode */
 .bottleneck-pulse-glow {
-  animation: bottleneck-glow 2s ease-in-out infinite !important;
+  /* no-op: visual indicator is now the red dot */
 }
 
 /* Visual Stage Columns Background */
@@ -254,9 +236,9 @@
 
 .stage-column-lane {
   flex: 1;
-  border-right: 1px dashed rgba(31, 41, 55, 0.35);
+  border-right: 1px dashed rgba(42, 42, 42, 0.35);
   height: 100%;
-  background: linear-gradient(to bottom, rgba(11, 17, 23, 0.15) 0%, rgba(3, 7, 18, 0.0) 100%);
+  background: linear-gradient(to bottom, rgba(26, 26, 26, 0.15) 0%, rgba(17, 17, 17, 0.0) 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -271,7 +253,7 @@
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.2em;
-  color: rgba(156, 163, 175, 0.55);
+  color: rgba(102, 102, 102, 0.55);
   margin-top: 16px;
   text-transform: uppercase;
 }

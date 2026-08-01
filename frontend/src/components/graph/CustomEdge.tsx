@@ -12,9 +12,9 @@ import {
 import { formatUSD } from "@/lib/api";
 
 const DEPENDENCY_COLORS: Record<string, string> = {
-  sole_supplier: "#EF4444", // Red
-  primary: "#38BDF8",       // Cyan
-  secondary: "#F59E0B",     // Amber
+  sole_supplier: "#FF6B35",
+  primary: "#333333",
+  secondary: "#262626",
 };
 
 const DEPENDENCY_LABELS: Record<string, string> = {
@@ -50,7 +50,7 @@ function CustomEdgeComponent({
     targetPosition,
   });
 
-  const isCritical = depType === "sole_supplier" || riskLevel === "critical";
+  const isSoleSupplier = depType === "sole_supplier";
 
   return (
     <>
@@ -58,11 +58,12 @@ function CustomEdgeComponent({
         id={id}
         path={edgePath}
         interactionWidth={15}
-        className={isCritical ? "edge-critical-flow" : ""}
+        className={isSoleSupplier ? "edge-critical-flow" : ""}
         style={{
           ...style,
           stroke: edgeColor,
-          strokeWidth: depType === "sole_supplier" ? 3.0 : 2.0,
+          strokeWidth: isSoleSupplier ? 1.5 : 1.0,
+          strokeDasharray: isSoleSupplier ? "6 3" : undefined,
           opacity: 0.85,
         }}
       />
@@ -80,11 +81,11 @@ function CustomEdgeComponent({
             className="
               hidden group-hover:block absolute z-50
               bottom-full left-1/2 -translate-x-1/2 mb-2
-              glass-card rounded-lg px-3 py-2 min-w-[200px]
+              glass-card rounded px-3 py-2 min-w-[200px]
               text-xs shadow-xl
             "
           >
-            <div className="font-semibold text-[#E5E7EB] mb-1.5">
+            <div className="font-semibold text-[#F5F5F5] mb-1.5">
               {edgeLabel}
             </div>
             <div className="flex items-center gap-2 mb-1">
@@ -96,18 +97,18 @@ function CustomEdgeComponent({
               <span
                 className="text-[9px] uppercase tracking-wider font-medium px-1.5 py-0.5 rounded"
                 style={{
-                  background: "rgba(56, 189, 248, 0.1)",
-                  color: "#38BDF8",
-                  border: "1px solid rgba(56, 189, 248, 0.3)",
+                  background: "rgba(255, 107, 53, 0.08)",
+                  color: "#FF6B35",
+                  border: "1px solid rgba(255, 107, 53, 0.15)",
                 }}
               >
                 {DEPENDENCY_LABELS[depType] || depType}
               </span>
             </div>
             {annualValue > 0 && (
-              <div className="text-[#9CA3AF] mt-1">
+              <div className="text-[#666666] mt-1">
                 Annual Value:{" "}
-                <span className="text-[#E5E7EB] font-mono">
+                <span className="text-[#F5F5F5] font-mono">
                   {formatUSD(annualValue)}
                 </span>
               </div>

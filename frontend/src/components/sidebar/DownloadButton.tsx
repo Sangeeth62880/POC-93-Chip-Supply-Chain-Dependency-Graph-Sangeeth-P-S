@@ -49,13 +49,13 @@ export default function DownloadButton({ graphData }: DownloadButtonProps) {
         onClick={handleDownload}
         className="
           w-full flex items-center justify-center gap-2
-          px-4 py-2.5 rounded-lg
+          px-4 py-2.5 rounded
           text-xs font-semibold uppercase tracking-wider
-          bg-[#38BDF8]/10 text-[#38BDF8] border border-[#38BDF8]/20
-          hover:bg-[#38BDF8]/20 hover:border-[#38BDF8]/40
+          bg-[#FF6B35]/06 text-[#FF6B35] border border-[#FF6B35]/15
+          hover:bg-[#FF6B35]/12 hover:border-[#FF6B35]/25
           active:scale-[0.98]
           transition-all duration-200
-          cyan-glow
+          
         "
       >
         <Download size={13} strokeWidth={2.5} />

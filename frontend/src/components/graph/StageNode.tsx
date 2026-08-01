@@ -18,6 +18,12 @@ interface StageNodeData {
   [key: string]: unknown;
 }
 
+const RISK_COLORS: Record<string, string> = {
+  critical: "#FF3B3B",
+  high: "#FF6B35",
+  medium: "#555555",
+};
+
 function StageNodeComponent({ data }: NodeProps) {
   const d = data as unknown as StageNodeData;
   const shareWidth = d.market_share ? Math.min(d.market_share, 100) : 0;
@@ -27,30 +33,52 @@ function StageNodeComponent({ data }: NodeProps) {
       <Handle
         type="target"
         position={Position.Left}
-        className="!w-1.5 !h-1.5 !bg-[#1F2937] !border-[#38BDF8] !border"
+        className="!w-1.5 !h-1.5 !bg-[#2A2A2A] !border-[#FF6B35] !border"
       />
       <div
         className={`
-          rounded-xl px-3 py-2.5 min-w-[220px] min-h-[95px] cursor-pointer
-          transition-all duration-200 flex flex-col justify-between
-          hover:scale-[1.04] hover:border-[#38BDF8]/40
-          ${d.is_bottleneck ? "bottleneck-pulse-glow" : ""}
+           min-w-[220px] min-h-[95px] cursor-pointer
+           transition-all duration-200 flex flex-col justify-between
+           hover:border-[#FF6B35]/30
         `}
         style={{
-          background: "rgba(11, 17, 23, 0.9)",
-          backdropFilter: "blur(12px)",
+          background: "#161616",
           border: d.is_bottleneck
-            ? "2px solid #EF4444"
-            : `1px solid #1F2937`,
-          borderLeft: `4px solid ${d.color}`,
+            ? "1px solid #444444"
+            : "1px solid #2A2A2A",
+          borderRadius: "6px",
+          padding: "12px 14px",
+          position: "relative",
         }}
       >
+        {/* Bottleneck red dot indicator */}
+        {d.is_bottleneck && (
+          <div
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              width: "6px",
+              height: "6px",
+              borderRadius: "50%",
+              background: "#FF3B3B",
+            }}
+          />
+        )}
+
         {/* Company name row */}
         <div>
           <div className="flex items-center justify-between gap-2 mb-1">
             <span
-              className="text-xs font-bold tracking-tight text-[#F3F4F6] truncate"
-              style={{ maxWidth: "165px" }}
+              style={{
+                color: "#FFFFFF",
+                fontSize: "13px",
+                fontWeight: 600,
+                maxWidth: "165px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
             >
               {d.label}
             </span>
@@ -60,24 +88,27 @@ function StageNodeComponent({ data }: NodeProps) {
           {/* Stage + risk badge row */}
           <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
             <span
-              className="text-[9px] uppercase tracking-wider font-extrabold px-1.5 py-0.5 rounded"
               style={{
-                color: d.color,
-                background: `${d.color}18`,
+                color: "#555555",
+                fontSize: "9px",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                fontWeight: 700,
               }}
             >
               {d.stage}
             </span>
             <span
-              className={`text-[9px] uppercase tracking-wider font-extrabold px-1.5 py-0.5 rounded risk-${d.risk_level}`}
+              style={{
+                color: RISK_COLORS[d.risk_level] || "#555555",
+                fontSize: "9px",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                fontWeight: 700,
+              }}
             >
               {d.risk_level}
             </span>
-            {d.is_bottleneck && (
-              <span className="text-[9px] uppercase tracking-wider font-extrabold px-1.5 py-0.5 rounded bg-[#EF4444]/15 text-[#EF4444] border border-[#EF4444]/30 animate-pulse">
-                Bottleneck
-              </span>
-            )}
           </div>
         </div>
 
@@ -85,17 +116,44 @@ function StageNodeComponent({ data }: NodeProps) {
         {d.market_share !== null && (
           <div className="w-full mt-auto">
             <div className="flex justify-between items-center mb-0.5">
-              <span className="text-[9px] text-[#9CA3AF] font-medium uppercase tracking-wider">Market Share</span>
-              <span className="text-[10px] text-[#E5E7EB] font-bold font-mono">
+              <span
+                style={{
+                  fontSize: "9px",
+                  color: "#444444",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  fontWeight: 500,
+                }}
+              >
+                Market Share
+              </span>
+              <span
+                style={{
+                  fontSize: "9px",
+                  color: "#888888",
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                }}
+              >
                 {formatPercent(d.market_share)}
               </span>
             </div>
-            <div className="w-full h-1 bg-[#1F2937]/55 rounded-full overflow-hidden">
+            <div
+              style={{
+                width: "100%",
+                height: "2px",
+                background: "#252525",
+                borderRadius: "2px",
+                overflow: "hidden",
+              }}
+            >
               <div
-                className="h-full rounded-full transition-all duration-500"
                 style={{
+                  height: "100%",
                   width: `${shareWidth}%`,
-                  background: d.color,
+                  background: "#FF6B35",
+                  borderRadius: "2px",
+                  transition: "all 0.5s",
                 }}
               />
             </div>
@@ -105,7 +163,7 @@ function StageNodeComponent({ data }: NodeProps) {
       <Handle
         type="source"
         position={Position.Right}
-        className="!w-1.5 !h-1.5 !bg-[#1F2937] !border-[#38BDF8] !border"
+        className="!w-1.5 !h-1.5 !bg-[#2A2A2A] !border-[#FF6B35] !border"
       />
     </>
   );

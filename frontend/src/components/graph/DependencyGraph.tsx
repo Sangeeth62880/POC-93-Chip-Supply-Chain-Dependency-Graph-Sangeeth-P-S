@@ -43,12 +43,12 @@ const edgeTypes = { custom: CustomEdge };
 function StageColumns() {
   const { x, y, zoom } = useViewport();
   const stages = [
-    { name: "Design", color: "#818CF8" },
-    { name: "Fabrication", color: "#38BDF8" },
-    { name: "Equipment", color: "#F59E0B" },
-    { name: "Memory", color: "#10B981" },
-    { name: "Packaging", color: "#6B7280" },
-    { name: "Consumer", color: "#EF4444" },
+    { name: "Design", color: "#5BB8F5" },
+    { name: "Fabrication", color: "#5BB8F5" },
+    { name: "Equipment", color: "#E8A838" },
+    { name: "Memory", color: "#5BB8F5" },
+    { name: "Packaging", color: "#3D5265" },
+    { name: "Consumer", color: "#3D5265" },
   ];
 
   return (
@@ -57,7 +57,7 @@ function StageColumns() {
       style={{ zIndex: 0 }}
     >
       <div
-        className="flex h-[2400px] border-l border-r border-[#1F2937]/25"
+        className="flex h-[2400px] border-l border-r border-[#2A2A2A]/25"
         style={{
           transform: `translate(${x}px, ${y}px) scale(${zoom})`,
           transformOrigin: "top left",
@@ -70,7 +70,7 @@ function StageColumns() {
         {stages.map((stage) => (
           <div
             key={stage.name}
-            className="stage-column-lane flex-1 flex flex-col border-r border-[#1F2937]/30 last:border-r-0"
+            className="stage-column-lane flex-1 flex flex-col border-r border-[#2A2A2A]/30 last:border-r-0"
             style={{
               width: "270px",
               background: `linear-gradient(to bottom, ${stage.color}04 0%, transparent 100%)`,
@@ -250,7 +250,6 @@ export default function DependencyGraph({
     soleSuppliersOnly,
     graphNodes,
     graphEdges,
-    selectedNodeId,
   ]);
 
   // Compute final opacity and styles for edges
@@ -343,7 +342,7 @@ export default function DependencyGraph({
   }, []);
 
   return (
-    <div className="relative w-full h-full select-none" style={{ background: "#030712" }}>
+    <div className="relative w-full h-full select-none" style={{ background: "#111111" }}>
       <ReactFlow
         nodes={nodesWithHighlight}
         edges={edgesWithHighlight}
@@ -359,21 +358,28 @@ export default function DependencyGraph({
         minZoom={0.25}
         maxZoom={1.8}
         proOptions={{ hideAttribution: true }}
-        className="!bg-[#030712] relative z-10"
+        className="relative z-10"
+        style={{ backgroundColor: "#111111" }}
       >
         <Background
           variant={BackgroundVariant.Dots}
           gap={20}
           size={0.5}
-          color="#1F2937"
-        />
-        <Controls
-          showInteractive={false}
-          className="!shadow-none !border border-[#1F2937] !bg-[#0B1117] !rounded-lg overflow-hidden"
+          color="#2A2A2A"
         />
         
         {/* Render columns behind nodes but inside viewports */}
         <StageColumns />
+
+        <Controls
+          position="bottom-left"
+          showInteractive={false}
+          style={{
+            background: '#161616',
+            border: '1px solid #2A2A2A',
+            borderRadius: '6px',
+          }}
+        />
       </ReactFlow>
 
       {/* Synthetic Data Badge */}
@@ -385,8 +391,8 @@ export default function DependencyGraph({
 
       {/* Loading overlay */}
       {!isLayouted && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#030712]/90 z-30">
-          <div className="text-xs text-[#9CA3AF] animate-pulse uppercase tracking-[0.2em] font-semibold">
+        <div className="absolute inset-0 flex items-center justify-center bg-[#111111]/85 z-30">
+          <div className="text-xs text-[#666666] animate-pulse uppercase tracking-[0.2em] font-semibold">
             Computing visual chokepoint layout...
           </div>
         </div>

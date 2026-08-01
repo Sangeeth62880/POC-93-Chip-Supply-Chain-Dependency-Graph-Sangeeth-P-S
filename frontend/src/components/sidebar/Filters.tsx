@@ -74,11 +74,11 @@ export default function Filters({
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#0B1117] border-r border-[#1F2937] px-4 py-5 select-none overflow-y-auto">
+    <div className="flex flex-col h-full bg-[#1A1A1A] border-r border-[#2A2A2A] px-4 py-5 select-none overflow-y-auto">
       {/* Header */}
       <div className="flex items-center gap-2 mb-5">
-        <Filter size={15} className="text-[#38BDF8]" strokeWidth={2.5} />
-        <h2 className="text-xs uppercase tracking-[0.2em] text-[#9CA3AF] font-black">
+        <Filter size={15} className="text-[#FF6B35]" strokeWidth={2.5} />
+        <h2 className="text-xs uppercase tracking-[0.2em] text-[#666666] font-black">
           Graph Controls
         </h2>
       </div>
@@ -86,25 +86,25 @@ export default function Filters({
       <div className="flex-1 space-y-5">
         {/* Toggle Controls */}
         <div className="space-y-2.5">
-          <div className="text-[10px] uppercase tracking-wider text-[#9CA3AF] font-bold">
+          <div className="text-[10px] uppercase tracking-wider text-[#666666] font-bold">
             Quick Analysis
           </div>
           
           {/* Bottleneck Toggle */}
           <button
             onClick={() => onBottlenecksOnlyChange(!bottlenecksOnly)}
-            className={`w-full flex items-center justify-between px-3 py-2 rounded-lg border transition-all duration-200 cursor-pointer ${
+            className={`w-full flex items-center justify-between px-3 py-2 rounded border transition-all duration-200 cursor-pointer ${
               bottlenecksOnly
-                ? "bg-[#EF4444]/15 border-[#EF4444]/40 text-[#EF4444] font-semibold"
-                : "bg-[#111827] border-[#1F2937] text-[#9CA3AF] hover:text-[#E5E7EB]"
+                ? "bg-[#FF3B3B]/08 border-[#FF3B3B]/20 text-[#FF3B3B] font-semibold"
+                : "bg-[#111111] border-[#2A2A2A] text-[#666666] hover:text-[#F5F5F5]"
             }`}
           >
             <div className="flex items-center gap-2">
-              <AlertTriangle size={13} className={bottlenecksOnly ? "text-[#EF4444]" : "text-[#9CA3AF]"} />
+              <AlertTriangle size={13} className={bottlenecksOnly ? "text-[#FF3B3B]" : "text-[#666666]"} />
               <span className="text-xs">Bottlenecks Only</span>
             </div>
             <div className={`w-3.5 h-3.5 rounded flex items-center justify-center border text-[9px] ${
-              bottlenecksOnly ? "border-[#EF4444] bg-[#EF4444] text-white" : "border-[#4B5563]"
+              bottlenecksOnly ? "border-[#FF3B3B] bg-[#FF3B3B] text-white" : "border-[#666666]"
             }`}>
               {bottlenecksOnly && "✓"}
             </div>
@@ -113,18 +113,18 @@ export default function Filters({
           {/* Sole Supplier Toggle */}
           <button
             onClick={() => onSoleSuppliersOnlyChange(!soleSuppliersOnly)}
-            className={`w-full flex items-center justify-between px-3 py-2 rounded-lg border transition-all duration-200 cursor-pointer ${
+            className={`w-full flex items-center justify-between px-3 py-2 rounded border transition-all duration-200 cursor-pointer ${
               soleSuppliersOnly
-                ? "bg-[#EF4444]/15 border-[#EF4444]/40 text-[#EF4444] font-semibold"
-                : "bg-[#111827] border-[#1F2937] text-[#9CA3AF] hover:text-[#E5E7EB]"
+                ? "bg-[#FF3B3B]/08 border-[#FF3B3B]/20 text-[#FF3B3B] font-semibold"
+                : "bg-[#111111] border-[#2A2A2A] text-[#666666] hover:text-[#F5F5F5]"
             }`}
           >
             <div className="flex items-center gap-2">
-              <ShieldAlert size={13} className={soleSuppliersOnly ? "text-[#EF4444]" : "text-[#9CA3AF]"} />
+              <ShieldAlert size={13} className={soleSuppliersOnly ? "text-[#FF3B3B]" : "text-[#666666]"} />
               <span className="text-xs">Sole Suppliers Only</span>
             </div>
             <div className={`w-3.5 h-3.5 rounded flex items-center justify-center border text-[9px] ${
-              soleSuppliersOnly ? "border-[#EF4444] bg-[#EF4444] text-white" : "border-[#4B5563]"
+              soleSuppliersOnly ? "border-[#FF3B3B] bg-[#FF3B3B] text-white" : "border-[#666666]"
             }`}>
               {soleSuppliersOnly && "✓"}
             </div>
@@ -133,16 +133,16 @@ export default function Filters({
 
         {/* Stage Filters */}
         <div>
-          <div className="text-[10px] uppercase tracking-wider text-[#9CA3AF] font-bold mb-2">
+          <div className="text-[10px] uppercase tracking-wider text-[#666666] font-bold mb-2">
             Filter by Stage
           </div>
           <div className="flex flex-col gap-1.5">
             <button
               onClick={() => onStagesChange([])}
-              className={`text-xs w-full text-left px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
+              className={`text-xs w-full text-left px-3 py-1.5 rounded border transition-all duration-200 cursor-pointer ${
                 activeStages.length === 0
-                  ? "bg-[#38BDF8]/15 text-[#38BDF8] border-[#38BDF8]/30 font-semibold"
-                  : "bg-[#111827] text-[#9CA3AF] border border-[#1F2937] hover:text-[#E5E7EB]"
+                  ? "bg-[#FF6B35]/08 text-[#FF6B35] border-[#FF6B35]/20 font-semibold"
+                  : "bg-[#111111] text-[#666666] border border-[#2A2A2A] hover:text-[#F5F5F5]"
               }`}
             >
               All Stages
@@ -151,10 +151,10 @@ export default function Filters({
               <button
                 key={stage}
                 onClick={() => toggleStage(stage)}
-                className={`text-xs w-full text-left px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
+                className={`text-xs w-full text-left px-3 py-1.5 rounded border transition-all duration-200 cursor-pointer ${
                   activeStages.includes(stage)
                     ? "font-semibold"
-                    : "bg-[#111827] text-[#9CA3AF] border border-[#1F2937] hover:text-[#E5E7EB]"
+                    : "bg-[#111111] text-[#666666] border border-[#2A2A2A] hover:text-[#F5F5F5]"
                 }`}
                 style={
                   activeStages.includes(stage)
@@ -177,16 +177,16 @@ export default function Filters({
 
         {/* Risk Level Filters */}
         <div>
-          <div className="text-[10px] uppercase tracking-wider text-[#9CA3AF] font-bold mb-2">
+          <div className="text-[10px] uppercase tracking-wider text-[#666666] font-bold mb-2">
             Filter by Risk
           </div>
           <div className="grid grid-cols-1 gap-1.5">
             <button
               onClick={() => onRiskLevelsChange([])}
-              className={`text-xs w-full text-left px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
+              className={`text-xs w-full text-left px-3 py-1.5 rounded border transition-all duration-200 cursor-pointer ${
                 activeRiskLevels.length === 0
-                  ? "bg-[#38BDF8]/15 text-[#38BDF8] border-[#38BDF8]/30 font-semibold"
-                  : "bg-[#111827] text-[#9CA3AF] border border-[#1F2937] hover:text-[#E5E7EB]"
+                  ? "bg-[#FF6B35]/08 text-[#FF6B35] border-[#FF6B35]/20 font-semibold"
+                  : "bg-[#111111] text-[#666666] border border-[#2A2A2A] hover:text-[#F5F5F5]"
               }`}
             >
               All Risks
@@ -195,10 +195,10 @@ export default function Filters({
               <button
                 key={level}
                 onClick={() => toggleRisk(level)}
-                className={`text-xs w-full text-left px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
+                className={`text-xs w-full text-left px-3 py-1.5 rounded border transition-all duration-200 cursor-pointer ${
                   activeRiskLevels.includes(level)
                     ? `risk-${level} font-semibold`
-                    : "bg-[#111827] text-[#9CA3AF] border border-[#1F2937] hover:text-[#E5E7EB]"
+                    : "bg-[#111111] text-[#666666] border border-[#2A2A2A] hover:text-[#F5F5F5]"
                 }`}
               >
                 {RISK_LABELS[level]}
@@ -209,16 +209,16 @@ export default function Filters({
 
         {/* Country Filters */}
         <div>
-          <div className="text-[10px] uppercase tracking-wider text-[#9CA3AF] font-bold mb-2">
+          <div className="text-[10px] uppercase tracking-wider text-[#666666] font-bold mb-2">
             Filter by Country
           </div>
           <div className="flex flex-col gap-1.5">
             <button
               onClick={() => onCountriesChange([])}
-              className={`text-xs w-full text-left px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
+              className={`text-xs w-full text-left px-3 py-1.5 rounded border transition-all duration-200 cursor-pointer ${
                 activeCountries.length === 0
-                  ? "bg-[#38BDF8]/15 text-[#38BDF8] border-[#38BDF8]/30 font-semibold"
-                  : "bg-[#111827] text-[#9CA3AF] border border-[#1F2937] hover:text-[#E5E7EB]"
+                  ? "bg-[#FF6B35]/08 text-[#FF6B35] border-[#FF6B35]/20 font-semibold"
+                  : "bg-[#111111] text-[#666666] border border-[#2A2A2A] hover:text-[#F5F5F5]"
               }`}
             >
               All Countries
@@ -228,10 +228,10 @@ export default function Filters({
                 <button
                   key={country}
                   onClick={() => toggleCountry(country)}
-                  className={`text-xs w-full text-left px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
+                  className={`text-xs w-full text-left px-3 py-1.5 rounded border transition-all duration-200 cursor-pointer ${
                     activeCountries.includes(country)
-                      ? "bg-[#38BDF8]/15 text-[#38BDF8] border-[#38BDF8]/30 font-semibold"
-                      : "bg-[#111827] text-[#9CA3AF] border border-[#1F2937] hover:text-[#E5E7EB]"
+                      ? "bg-[#FF6B35]/08 text-[#FF6B35] border-[#FF6B35]/20 font-semibold"
+                      : "bg-[#111111] text-[#666666] border border-[#2A2A2A] hover:text-[#F5F5F5]"
                   }`}
                 >
                   <div className="flex items-center gap-2">
@@ -252,7 +252,7 @@ export default function Filters({
       {/* Reset Button */}
       <button
         onClick={onResetFilters}
-        className="mt-6 flex items-center justify-center gap-2 w-full py-2 border border-[#EF4444]/30 text-[#EF4444] rounded-lg text-xs font-semibold bg-[#EF4444]/5 hover:bg-[#EF4444]/15 transition-all duration-200 cursor-pointer"
+        className="mt-6 flex items-center justify-center gap-2 w-full py-2 border border-[#FF3B3B]/20 text-[#FF3B3B] rounded text-xs font-semibold bg-[#FF3B3B]/05 hover:bg-[#FF3B3B]/10 transition-all duration-200 cursor-pointer"
       >
         <RotateCcw size={12} />
         Reset Filters
