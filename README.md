@@ -145,3 +145,83 @@ Hovering over a company (e.g. ASML) highlights its direct upstream and downstrea
 Filtering for a specific subset (e.g. Critical Risk or Taiwan only) updates all graph coordinates, dynamically centers the visible nodes, and updates metrics.
 ![04_filtered_view.png](screenshots/04_filtered_view.png)
 
+---
+
+## 🚀 Deployment
+
+### Backend — Railway
+
+1. Go to [railway.app](https://railway.app) → **New Project** → Deploy from GitHub repo
+2. Select this repository
+3. Set root directory to: `backend`
+4. Add environment variables:
+   ```
+   SAM_API_KEY=your_key
+   CORS_ORIGINS=https://your-vercel-app.vercel.app
+   ```
+5. Go to **Settings → Networking → Generate Domain**
+6. Copy your Railway backend URL
+
+### Frontend — Vercel
+
+1. Go to [vercel.com](https://vercel.com) → **New Project** → Import from GitHub
+2. Select this repository
+3. Set root directory to: `frontend`
+4. Add environment variable:
+   ```
+   NEXT_PUBLIC_API_URL=https://your-backend.railway.app
+   ```
+5. Click **Deploy**
+
+### After deployment
+
+Update Railway `CORS_ORIGINS` to your actual Vercel frontend URL.
+
+### Backend + Frontend — Render
+
+**Option A: Blueprint (one-click)**
+
+1. Go to [render.com](https://render.com) → **New** → **Blueprint**
+2. Connect this repository
+3. Render reads [`render.yaml`](render.yaml) and creates both services
+4. Enter your `SAM_API_KEY` when prompted
+5. After deploy, update `CORS_ORIGINS` on the backend service to your actual frontend URL
+6. Update `NEXT_PUBLIC_API_URL` on the frontend service to your actual backend URL
+
+**Option B: Manual setup**
+
+1. **Backend** — New → Web Service
+   - Root directory: `backend`
+   - Runtime: **Python 3**
+   - Build command: `pip install -r requirements.txt`
+   - Start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+   - Add env vars: `SAM_API_KEY`, `CORS_ORIGINS`
+2. **Frontend** — New → Web Service
+   - Root directory: `frontend`
+   - Runtime: **Node**
+   - Build command: `npm install && npm run build`
+   - Start command: `npm start`
+   - Add env var: `NEXT_PUBLIC_API_URL=https://your-backend.onrender.com`
+
+---
+
+## 🐳 Docker (Local)
+
+1. Copy env file:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Add your SAM API key to `.env`
+
+3. Build and start:
+   ```bash
+   docker-compose up --build
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000)
+
+5. Stop:
+   ```bash
+   docker-compose down
+   ```

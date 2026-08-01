@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: chip-dependency-graph-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: CORS_ORIGINS
+        value: https://chip-dependency-graph-frontend.onrender.com
+      - key: SAM_API_KEY
+        sync: false
+      - key: USASPENDING_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+
+  - type: web
+    name: chip-dependency-graph-frontend
+    runtime: node
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://chip-dependency-graph-backend.onrender.com
+      - key: NODE_VERSION
+        value: "20"
